@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -112,6 +111,16 @@ export default {
 						transform: 'translateX(0)'
 					}
 				},
+				'slide-in-up': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
 				'scale-up': {
 					'0%': {
 						opacity: '0',
@@ -140,18 +149,45 @@ export default {
 				},
 				'float': {
 					'0%, 100%': {
-						transform: 'translateY(0px)'
+						transform: 'translateY(0px) rotate(0deg)'
 					},
-					'50%': {
-						transform: 'translateY(-10px)'
+					'33%': {
+						transform: 'translateY(-10px) rotate(2deg)'
+					},
+					'66%': {
+						transform: 'translateY(-5px) rotate(-2deg)'
 					}
 				},
 				'glow': {
 					'0%, 100%': {
-						boxShadow: '0 0 5px rgba(184, 134, 11, 0.5)'
+						textShadow: '0 0 5px rgba(184, 134, 11, 0.5), 0 0 10px rgba(184, 134, 11, 0.3)'
 					},
 					'50%': {
-						boxShadow: '0 0 20px rgba(184, 134, 11, 0.8)'
+						textShadow: '0 0 20px rgba(184, 134, 11, 0.8), 0 0 30px rgba(184, 134, 11, 0.6)'
+					}
+				},
+				'pulse-slow': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0.7'
+					}
+				},
+				'wiggle': {
+					'0%, 100%': {
+						transform: 'rotate(-3deg)'
+					},
+					'50%': {
+						transform: 'rotate(3deg)'
+					}
+				},
+				'spin-slow': {
+					'0%': {
+						transform: 'rotate(0deg)'
+					},
+					'100%': {
+						transform: 'rotate(360deg)'
 					}
 				}
 			},
@@ -161,11 +197,15 @@ export default {
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-in-left': 'slide-in-left 0.6s ease-out',
 				'slide-in-right': 'slide-in-right 0.6s ease-out',
+				'slide-in-up': 'slide-in-up 0.6s ease-out',
 				'scale-up': 'scale-up 0.5s ease-out',
 				'typewriter': 'typewriter 3s steps(40) 1s forwards',
 				'blink': 'blink 1s infinite',
-				'float': 'float 3s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite alternate'
+				'float': 'float 4s ease-in-out infinite',
+				'glow': 'glow 2s ease-in-out infinite alternate',
+				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
+				'wiggle': 'wiggle 1s ease-in-out infinite',
+				'spin-slow': 'spin-slow 3s linear infinite'
 			}
 		}
 	},
