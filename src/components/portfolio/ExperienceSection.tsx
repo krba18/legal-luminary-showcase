@@ -11,61 +11,61 @@ const ExperienceSection = () => {
   const experiences = [
     {
       title: "Legal Intern",
-      company: "Supreme Court Bar Association",
-      location: "Washington, D.C.",
+      company: "District Court Legal Aid",
+      location: "Chennai, Tamil Nadu",
       duration: "Summer 2024",
       type: "Internship",
-      description: "Assisted senior attorneys with constitutional law cases and Supreme Court briefs.",
+      description: "Gained practical experience in legal procedures and client interaction under supervision.",
       responsibilities: [
-        "Researched federal court precedents for constitutional challenges",
-        "Drafted memoranda on First Amendment issues",
-        "Assisted in preparation of amicus curiae briefs",
-        "Attended Supreme Court oral arguments and case conferences"
+        "Assisted advocates in preparing case files and documents",
+        "Observed court proceedings and learned legal procedures",
+        "Helped with legal research on relevant case laws",
+        "Assisted in drafting basic legal documents"
       ],
-      skills: ["Constitutional Law", "Legal Research", "Brief Writing", "Case Analysis"],
+      skills: ["Legal Research", "Document Preparation", "Court Procedures", "Client Communication"],
       achievements: [
-        "Contributed to winning brief in landmark civil rights case",
-        "Received commendation for exceptional research quality"
+        "Successfully completed 6-week internship program",
+        "Gained hands-on experience in family and civil law cases"
       ],
       logo: <Scale className="w-12 h-12" />
     },
     {
-      title: "Student Attorney",
-      company: "Harvard Legal Aid Bureau",
-      location: "Cambridge, MA",
-      duration: "Sep 2023 - Present",
-      type: "Clinic",
-      description: "Providing legal representation to low-income clients under supervision.",
+      title: "Student Volunteer",
+      company: "Legal Aid Society",
+      location: "Local Community",
+      duration: "Jan 2024 - Present",
+      type: "Volunteer",
+      description: "Volunteering to provide basic legal awareness in rural communities.",
       responsibilities: [
-        "Represent clients in housing court proceedings",
-        "Conduct client interviews and case preparation",
-        "Draft pleadings and legal documents",
-        "Negotiate settlements with opposing counsel"
+        "Conducted legal awareness programs in villages",
+        "Helped people understand their basic legal rights",
+        "Assisted in organizing legal aid camps",
+        "Documented common legal issues faced by community"
       ],
-      skills: ["Client Counseling", "Litigation", "Negotiation", "Legal Writing"],
+      skills: ["Public Speaking", "Community Outreach", "Legal Awareness", "Documentation"],
       achievements: [
-        "Successfully represented 15+ clients in housing disputes",
-        "Achieved 90% success rate in case outcomes"
+        "Reached over 200 people through awareness programs",
+        "Helped 25+ individuals access legal aid services"
       ],
       logo: <Users className="w-12 h-12" />
     },
     {
       title: "Research Assistant",
-      company: "Professor Sarah Williams",
-      location: "Harvard Law School",
-      duration: "Jan 2023 - Aug 2023",
-      type: "Research",
-      description: "Research assistant for constitutional law professor's book on civil liberties.",
+      company: "College Law Department",
+      location: "Law College",
+      duration: "Sep 2023 - Dec 2023",
+      type: "Academic",
+      description: "Assisted professors with research projects on constitutional law topics.",
       responsibilities: [
-        "Conducted extensive legal research on civil liberties cases",
-        "Analyzed Supreme Court decisions and their implications",
-        "Compiled comprehensive case law databases",
-        "Assisted in manuscript preparation and citation verification"
+        "Collected and organized legal research materials",
+        "Prepared summaries of important case laws",
+        "Assisted in preparing academic papers",
+        "Maintained research databases and citations"
       ],
-      skills: ["Legal Research", "Academic Writing", "Data Analysis", "Citation"],
+      skills: ["Academic Research", "Legal Writing", "Citation Methods", "Data Organization"],
       achievements: [
-        "Co-authored article published in Harvard Law Review",
-        "Research contributed to professor's acclaimed book"
+        "Contributed to department's research publication",
+        "Developed strong research and analytical skills"
       ],
       logo: <FileText className="w-12 h-12" />
     }
@@ -80,11 +80,11 @@ const ExperienceSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-legal-navy dark:text-white mb-4 animate-fade-in">
-            Legal Experience
+            Learning Experience
           </h2>
           <div className="w-24 h-1 bg-legal-gold mx-auto animate-scale-up"></div>
           <p className="text-xl text-gray-600 dark:text-gray-300 mt-6 max-w-3xl mx-auto animate-fade-in">
-            Practical legal experience gained through prestigious internships, clinical work, and research opportunities.
+            Building practical legal knowledge through internships, volunteer work, and academic research as a developing law student.
           </p>
         </div>
 
@@ -154,7 +154,7 @@ const ExperienceSection = () => {
                 >
                   <CardHeader className="pb-4">
                     <CardTitle className="text-lg font-bold text-legal-navy dark:text-white">
-                      Key Responsibilities
+                      Learning Activities
                     </CardTitle>
                   </CardHeader>
 
@@ -169,7 +169,7 @@ const ExperienceSection = () => {
                     </ul>
 
                     <div className="mb-4">
-                      <h4 className="font-semibold text-legal-navy dark:text-white mb-2">Skills Applied:</h4>
+                      <h4 className="font-semibold text-legal-navy dark:text-white mb-2">Skills Developed:</h4>
                       <div className="flex flex-wrap gap-1">
                         {exp.skills.map((skill, skillIndex) => (
                           <Badge 
@@ -184,7 +184,7 @@ const ExperienceSection = () => {
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-legal-navy dark:text-white mb-2">Achievements:</h4>
+                      <h4 className="font-semibold text-legal-navy dark:text-white mb-2">Key Learnings:</h4>
                       <ul className="space-y-1">
                         {exp.achievements.map((achievement, achIndex) => (
                           <li key={achIndex} className="flex items-start text-xs text-gray-600 dark:text-gray-300">
@@ -206,26 +206,26 @@ const ExperienceSection = () => {
           <Card className="bg-gradient-to-r from-legal-gold/5 to-legal-burgundy/5 border-legal-gold/20 animate-fade-in">
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold text-legal-navy dark:text-white mb-4">
-                Professional Growth
+                Learning Journey
               </h3>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-4xl mx-auto mb-6">
-                Through diverse legal experiences ranging from Supreme Court research to direct client representation, 
-                I have developed a comprehensive understanding of legal practice across multiple contexts. Each opportunity 
-                has strengthened my commitment to justice and enhanced my practical skills.
+                As a 4th year law student, I am actively building my practical legal knowledge through diverse experiences. 
+                Each opportunity has helped me understand the real-world application of legal principles and develop essential 
+                skills for my future legal career.
               </p>
               
               <div className="grid md:grid-cols-3 gap-6 mt-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-legal-gold mb-2">50+</div>
-                  <div className="text-gray-600 dark:text-gray-300">Cases Worked On</div>
+                  <div className="text-3xl font-bold text-legal-gold mb-2">15+</div>
+                  <div className="text-gray-600 dark:text-gray-300">Cases Observed</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-legal-gold mb-2">300+</div>
-                  <div className="text-gray-600 dark:text-gray-300">Hours of Legal Practice</div>
+                  <div className="text-3xl font-bold text-legal-gold mb-2">100+</div>
+                  <div className="text-gray-600 dark:text-gray-300">Hours of Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-legal-gold mb-2">3</div>
-                  <div className="text-gray-600 dark:text-gray-300">Published Works</div>
+                  <div className="text-3xl font-bold text-legal-gold mb-2">200+</div>
+                  <div className="text-gray-600 dark:text-gray-300">People Helped</div>
                 </div>
               </div>
             </CardContent>

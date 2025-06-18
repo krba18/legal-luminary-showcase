@@ -100,9 +100,9 @@ const Index = () => {
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-3 gap-8">
               <div className="animate-fade-in">
-                <h3 className="text-xl font-bold mb-4 text-legal-gold">Alexandra Mitchell</h3>
-                <p className="text-gray-300">Law Student & Future Advocate</p>
-                <p className="text-gray-400 mt-2">Advocating Justice Through Words and Wisdom</p>
+                <h3 className="text-xl font-bold mb-4 text-legal-gold">Sankara Subramanian</h3>
+                <p className="text-gray-300">4th Year Law Student</p>
+                <p className="text-gray-400 mt-2">Future Legal Professional & Justice Advocate</p>
               </div>
               
               <div className="animate-fade-in">
@@ -138,7 +138,7 @@ const Index = () => {
             </div>
             
             <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2024 Alexandra Mitchell. All rights reserved.</p>
+              <p>&copy; 2024 Sankara Subramanian. All rights reserved.</p>
             </div>
           </div>
         </footer>
@@ -161,7 +161,7 @@ const Index = () => {
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <Mail className="w-4 h-4 mr-2" />
-            Hire Me
+            Contact Me
           </Button>
         </div>
       </div>
