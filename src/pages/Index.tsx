@@ -23,6 +23,32 @@ const Index = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [language, setLanguage] = useState('english');
+
+  const translations = {
+    english: {
+      footerName: 'Sankara Subramanian',
+      footerTitle: '4th Year Law Student',
+      footerSubtitle: 'Future Legal Professional & Justice Advocate',
+      quickLinks: 'Quick Links',
+      connect: 'Connect',
+      copyright: '© 2024 Sankara Subramanian. All rights reserved.',
+      contactMe: 'Contact Me',
+      links: ['About', 'Education', 'Skills', 'Experience', 'Contact']
+    },
+    tamil: {
+      footerName: 'சங்கர சுப்ரமணியன்',
+      footerTitle: '4ஆம் ஆண்டு சட்ட மாணவர்',
+      footerSubtitle: 'எதிர்கால சட்ட தொழில் வல்லுநர் & நீதி வழக்கறிஞர்',
+      quickLinks: 'விரைவு இணைப்புகள்',
+      connect: 'தொடர்பு',
+      copyright: '© 2024 சங்கர சுப்ரமணியன். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.',
+      contactMe: 'என்னைத் தொடர்புகொள்ளுங்கள்',
+      links: ['அறிமுகம்', 'கல்வி', 'திறமைகள்', 'அனுபவம்', 'தொடர்பு']
+    }
+  };
+
+  const currentTranslations = translations[language as keyof typeof translations] || translations.english;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,6 +83,10 @@ const Index = () => {
     document.documentElement.classList.toggle('dark');
   };
 
+  const handleLanguageChange = (newLanguage: string) => {
+    setLanguage(newLanguage);
+  };
+
   return (
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
       <div className="bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-black transition-all duration-500">
@@ -66,10 +96,14 @@ const Index = () => {
           darkMode={darkMode} 
           toggleDarkMode={toggleDarkMode} 
           activeSection={activeSection}
+          language={language}
+          onLanguageChange={handleLanguageChange}
         />
 
-        {/* Hero Section */}
-        <HeroSection />
+        {/* Hero Section with proper top padding to avoid navigation overlap */}
+        <div className="pt-16">
+          <HeroSection language={language} />
+        </div>
 
         {/* About Section */}
         <AboutSection />
@@ -100,29 +134,32 @@ const Index = () => {
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-3 gap-8">
               <div className="animate-fade-in">
-                <h3 className="text-xl font-bold mb-4 text-legal-gold">Sankara Subramanian</h3>
-                <p className="text-gray-300">4th Year Law Student</p>
-                <p className="text-gray-400 mt-2">Future Legal Professional & Justice Advocate</p>
+                <h3 className="text-xl font-bold mb-4 text-legal-gold">{currentTranslations.footerName}</h3>
+                <p className="text-gray-300">{currentTranslations.footerTitle}</p>
+                <p className="text-gray-400 mt-2">{currentTranslations.footerSubtitle}</p>
               </div>
               
               <div className="animate-fade-in">
-                <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+                <h4 className="text-lg font-semibold mb-4">{currentTranslations.quickLinks}</h4>
                 <ul className="space-y-2">
-                  {['About', 'Education', 'Skills', 'Experience', 'Contact'].map((link) => (
-                    <li key={link}>
-                      <a 
-                        href={`#${link.toLowerCase()}`} 
-                        className="text-gray-300 hover:text-legal-gold transition-colors duration-300"
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
+                  {currentTranslations.links.map((link, index) => {
+                    const hrefs = ['#about', '#education', '#skills', '#experience', '#contact'];
+                    return (
+                      <li key={link}>
+                        <a 
+                          href={hrefs[index]} 
+                          className="text-gray-300 hover:text-legal-gold transition-colors duration-300"
+                        >
+                          {link}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               
               <div className="animate-fade-in">
-                <h4 className="text-lg font-semibold mb-4">Connect</h4>
+                <h4 className="text-lg font-semibold mb-4">{currentTranslations.connect}</h4>
                 <div className="flex space-x-4">
                   <a href="#" className="text-gray-300 hover:text-legal-gold transition-colors duration-300 transform hover:scale-110">
                     <Linkedin className="w-6 h-6" />
@@ -138,7 +175,7 @@ const Index = () => {
             </div>
             
             <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2024 Sankara Subramanian. All rights reserved.</p>
+              <p>{currentTranslations.copyright}</p>
             </div>
           </div>
         </footer>
@@ -161,7 +198,7 @@ const Index = () => {
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <Mail className="w-4 h-4 mr-2" />
-            Contact Me
+            {currentTranslations.contactMe}
           </Button>
         </div>
       </div>

@@ -1,28 +1,65 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Moon, Sun, Download } from 'lucide-react';
+import { Menu, X, Moon, Sun, Download, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface NavigationProps {
   darkMode: boolean;
   toggleDarkMode: () => void;
   activeSection: string;
+  language: string;
+  onLanguageChange: (language: string) => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode, activeSection }) => {
+const Navigation: React.FC<NavigationProps> = ({ 
+  darkMode, 
+  toggleDarkMode, 
+  activeSection,
+  language,
+  onLanguageChange
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Education', href: '#education' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Moot Court', href: '#moot-court' },
-    { name: 'Publications', href: '#publications' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
-  ];
+  const translations = {
+    english: {
+      navItems: [
+        { name: 'Home', href: '#home' },
+        { name: 'About', href: '#about' },
+        { name: 'Education', href: '#education' },
+        { name: 'Skills', href: '#skills' },
+        { name: 'Experience', href: '#experience' },
+        { name: 'Moot Court', href: '#moot-court' },
+        { name: 'Publications', href: '#publications' },
+        { name: 'Projects', href: '#projects' },
+        { name: 'Contact', href: '#contact' }
+      ],
+      resume: 'Resume',
+      downloadResume: 'Download Resume'
+    },
+    tamil: {
+      navItems: [
+        { name: 'முகப்பு', href: '#home' },
+        { name: 'அறிமுகம்', href: '#about' },
+        { name: 'கல்வி', href: '#education' },
+        { name: 'திறமைகள்', href: '#skills' },
+        { name: 'அனுபவம்', href: '#experience' },
+        { name: 'மூட் கோர்ட்', href: '#moot-court' },
+        { name: 'வெளியீடுகள்', href: '#publications' },
+        { name: 'திட்டங்கள்', href: '#projects' },
+        { name: 'தொடர்பு', href: '#contact' }
+      ],
+      resume: 'விவரக்குறிப்பு',
+      downloadResume: 'விவரக்குறிப்பை பதிவிறக்கு'
+    }
+  };
+
+  const currentTranslations = translations[language as keyof typeof translations] || translations.english;
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -53,7 +90,7 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode, activ
           {/* Desktop Menu */}
           <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              {navItems.map((item) => (
+              {currentTranslations.navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
@@ -81,8 +118,32 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode, activ
               className="border-legal-gold text-legal-gold hover:bg-legal-gold hover:text-white transition-all duration-300"
             >
               <Download className="w-4 h-4 mr-2" />
-              Resume
+              {currentTranslations.resume}
             </Button>
+            
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="rounded-full">
+                  <Globe className="w-5 h-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem 
+                  onClick={() => onLanguageChange('english')}
+                  className={language === 'english' ? 'bg-legal-gold/10 text-legal-gold' : ''}
+                >
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => onLanguageChange('tamil')}
+                  className={language === 'tamil' ? 'bg-legal-gold/10 text-legal-gold' : ''}
+                >
+                  தமிழ்
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Button
               variant="ghost"
               size="sm"
@@ -95,6 +156,29 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode, activ
 
           {/* Mobile menu button */}
           <div className="lg:hidden flex items-center space-x-2">
+            {/* Mobile Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="rounded-full">
+                  <Globe className="w-5 h-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem 
+                  onClick={() => onLanguageChange('english')}
+                  className={language === 'english' ? 'bg-legal-gold/10 text-legal-gold' : ''}
+                >
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => onLanguageChange('tamil')}
+                  className={language === 'tamil' ? 'bg-legal-gold/10 text-legal-gold' : ''}
+                >
+                  தமிழ்
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Button
               variant="ghost"
               size="sm"
@@ -118,7 +202,7 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode, activ
         {isMenuOpen && (
           <div className="lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 animate-fade-in">
-              {navItems.map((item) => (
+              {currentTranslations.navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
@@ -142,7 +226,7 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, toggleDarkMode, activ
                   className="w-full border-legal-gold text-legal-gold hover:bg-legal-gold hover:text-white transition-all duration-300"
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  Download Resume
+                  {currentTranslations.downloadResume}
                 </Button>
               </div>
             </div>

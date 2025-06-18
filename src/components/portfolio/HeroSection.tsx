@@ -3,24 +3,46 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, Scale, Gavel, BookOpen, Award, Users, FileText, Mail, Phone, Download, Eye, Star, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const HeroSection = () => {
-  const [currentTypewriter, setCurrentTypewriter] = useState(0);
+interface HeroSectionProps {
+  language: string;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ language }) => {
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
-  const typewriterTexts = [
-    "Advocating Justice Through Words and Wisdom",
-    "Future Legal Professional",
-    "Passionate About Constitutional Law",
-    "Dedicated to Human Rights"
-  ];
+  const translations = {
+    english: {
+      name: 'Sankara Subramanian',
+      tagline: 'Human Rights, Justice Advocate',
+      description: 'Final year law student with a passion for constitutional law, human rights advocacy, and legal research. Dedicated to making a positive impact in the legal profession.',
+      contactMe: 'Contact Me',
+      aboutMe: 'About Me',
+      downloadCV: 'Download CV',
+      scrollDown: 'Scroll Down',
+      badges: {
+        lawStudent: 'Law Student',
+        humanRights: 'Human Rights',
+        justiceAdvocate: 'Justice Advocate'
+      }
+    },
+    tamil: {
+      name: 'சங்கர சுப்ரமணியன்',
+      tagline: 'மனித உரிமைகள், நீதி வழக்கறிஞர்',
+      description: 'அரசியலமைப்பு சட்டம், மனித உரிமைகள் வாதம் மற்றும் சட்ட ஆராய்ச்சியில் ஆர்வமுள்ள இறுதி ஆண்டு சட்ட மாணவர். சட்டத் துறையில் நேர்மறையான தாக்கத்தை ஏற்படுத்த அர்ப்பணித்துள்ளார்.',
+      contactMe: 'என்னைத் தொடர்புகொள்ளுங்கள்',
+      aboutMe: 'என்னைப் பற்றி',
+      downloadCV: 'விவரக்குறிப்பை பதிவிறக்கு',
+      scrollDown: 'கீழே ஸ்க்ரோல் செய்யுங்கள்',
+      badges: {
+        lawStudent: 'சட்ட மாணவர்',
+        humanRights: 'மனித உரிமைகள்',
+        justiceAdvocate: 'நீதி வழக்கறிஞர்'
+      }
+    }
+  };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTypewriter((prev) => (prev + 1) % typewriterTexts.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  const currentTranslations = translations[language as keyof typeof translations] || translations.english;
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -71,7 +93,7 @@ const HeroSection = () => {
           {/* Static Professional Name */}
           <div className="mb-8">
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-4">
-              Sankara Subramanian
+              {currentTranslations.name}
             </h1>
           </div>
 
@@ -102,14 +124,13 @@ const HeroSection = () => {
           {/* Half-Visible Tagline */}
           <div className="mb-8 overflow-hidden" style={{ height: '2rem' }}>
             <div className="text-lg sm:text-xl lg:text-2xl text-legal-gold font-light">
-              Human Rights, Justice Advocate
+              {currentTranslations.tagline}
             </div>
           </div>
 
           {/* Professional Description */}
           <p className="text-base sm:text-lg text-gray-300 mb-16 max-w-3xl mx-auto leading-relaxed">
-            Final year law student with a passion for constitutional law, human rights advocacy, 
-            and legal research. Dedicated to making a positive impact in the legal profession.
+            {currentTranslations.description}
           </p>
 
           {/* Professional Action Buttons */}
@@ -120,7 +141,7 @@ const HeroSection = () => {
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Mail className="w-5 h-5 mr-2" />
-              Contact Me
+              {currentTranslations.contactMe}
             </Button>
             
             <Button 
@@ -129,7 +150,7 @@ const HeroSection = () => {
               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Users className="w-5 h-5 mr-2" />
-              About Me
+              {currentTranslations.aboutMe}
             </Button>
             
             <Button 
@@ -138,7 +159,7 @@ const HeroSection = () => {
               onClick={() => window.open('#', '_blank')}
             >
               <Download className="w-5 h-5 mr-2" />
-              Download CV
+              {currentTranslations.downloadCV}
             </Button>
           </div>
 
@@ -176,7 +197,7 @@ const HeroSection = () => {
         {/* Overlapping Scroll Indicator */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer group z-20" onClick={scrollToNext}>
           <div className="flex flex-col items-center text-legal-gold hover:text-white transition-colors duration-300">
-            <span className="text-sm mb-2 font-medium">Scroll Down</span>
+            <span className="text-sm mb-2 font-medium">{currentTranslations.scrollDown}</span>
             <div className="relative">
               <ChevronDown className="w-6 h-6 animate-pulse group-hover:animate-bounce" />
               <div className="absolute inset-0 w-6 h-6 bg-legal-gold/20 rounded-full animate-ping"></div>
@@ -188,13 +209,13 @@ const HeroSection = () => {
       {/* Professional Achievement Badges */}
       <div className="absolute top-4 right-4 lg:top-8 lg:right-8 flex flex-col gap-2 animate-slide-in-right">
         <div className="bg-legal-gold/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs text-legal-gold border border-legal-gold/30">
-          Law Student
+          {currentTranslations.badges.lawStudent}
         </div>
         <div className="bg-blue-500/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs text-blue-300 border border-blue-400/30">
-          Human Rights
+          {currentTranslations.badges.humanRights}
         </div>
         <div className="bg-gray-500/20 backdrop-blur-sm rounded-full px-3 py-1 text-xs text-gray-300 border border-gray-400/30">
-          Justice Advocate
+          {currentTranslations.badges.justiceAdvocate}
         </div>
       </div>
 
